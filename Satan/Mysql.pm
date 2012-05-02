@@ -90,7 +90,7 @@ sub add {
 	my $real_name = 'my'.$uid.'_'.$name;
 	my $real_name_length = length($real_name);
 	my $name_length = length($name);
-	my $maximum_name_length = $real_name_length - length('my'.$uid.'_');
+	my $maximum_name_length = 16 - length('my'.$uid.'_');
 	
 	if ($name_length > $maximum_name_length) {
 		my $name_type = $is_user ? "User" : "Database";
