@@ -89,10 +89,12 @@ sub add {
 	# real name is with prefix
 	my $real_name = 'my'.$uid.'_'.$name;
 	my $real_name_length = length($real_name);
-	if ($real_name_length > 16) {
+	my $name_length = length($name);
+	my $maximum_name_length = $real_name_length - length('my'.$uid.'_');
+	
+	if ($name_length > $maximum_name_length) {
 		my $name_type = $is_user ? "User" : "Database";
-		my $maximum_name_length = $real_name_length - length('my'.$uid.'_');
-		return "$name_type name too long (\033[1m$real_name_length\033[0m chars). Maximum length is \033[1m$maximum_name_length\033[0m.";
+		return "$name_type name too long (\033[1m$name_length\033[0m chars). Maximum length is \033[1m$maximum_name_length\033[0m.";
 	}
 		
 	# user or grant user password
